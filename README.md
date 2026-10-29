@@ -22,6 +22,7 @@ The build copies only public website files into `dist/`. The GitHub Actions work
 - Select a window or route stop; use the previous/next controls or left/right keys inside the gallery.
 - Swipe the coaches on narrow screens. The nearest coach becomes active after scrolling settles.
 - Only the active GIF plays. Other coaches show static posters. Motion also stops when the gallery leaves view or the tab is hidden.
+- Scrolling makes the section under the viewport's midpoint colorful. All other sections remain grayscale. When the project section is current, its original color illustrations appear; the other sections show the grayscale versions.
 - A pause control and the system's reduced-motion preference are respected.
 - Field notes use a native dialog with Escape dismissal, a close button, and focus restoration.
 
@@ -32,6 +33,7 @@ The build copies only public website files into `dist/`. The GitHub Actions work
 - `styles.css`: typography, colors, train illustration, responsive styles.
 - The original CV is kept locally in the ignored `.private/` directory and is excluded from the public repository and deployment.
 - `scripts/generate_assets.py`: reproducible, original illustrated project GIFs and posters. Requires Pillow only if regenerating images.
+- `assets/color/`: the original color GIFs and posters from the portfolio's first commit. The generated grayscale counterparts stay in `assets/`; keep both sets together when changing project artwork.
 
 The three animations illustrate concepts; they are not recordings or model-generated outputs. Team contributions are attributed as described in the CV. Evaluation results retain limitations from the project READMEs. The CV and mule README report different dataset sizes, so no dataset-size claim is used on the portfolio.
 

@@ -37,5 +37,7 @@ for font in ('jetbrains-mono',):
     assert (ROOT / f'assets/fonts/{font}.woff2').stat().st_size > 1000
 for gif in ('mule', 'llm', 'diffusion'):
     assert (ROOT / f'assets/{gif}.gif').read_bytes()[:6] in (b'GIF87a', b'GIF89a')
+    assert (ROOT / f'assets/color/{gif}.gif').read_bytes()[:6] in (b'GIF87a', b'GIF89a')
+    assert (ROOT / f'assets/color/{gif}-still.png').read_bytes()[:8] == b'\x89PNG\r\n\x1a\n'
 assert not list((ROOT / 'assets').rglob('*.pdf')), 'Private CV must stay outside public assets'
 print(f'Passed: {len(site.refs)} asset/link references, {len(site.ids)} unique IDs, 3 GIFs, fonts, and private-CV exclusion.')

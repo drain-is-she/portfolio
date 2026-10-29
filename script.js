@@ -53,10 +53,12 @@ let navigationTimer;
 let navigating = false;
 
 function updateAnimations() {
+  const sectionIsColored = document.querySelector('.projects-section').classList.contains('section-active');
   coaches.forEach((coach, index) => {
     const image = coach.querySelector('img');
     const playing = index === activeProject && !userPaused && trainVisible && !document.hidden;
-    const nextSource = playing ? image.dataset.animation : image.dataset.still;
+    const asset = playing ? image.dataset.animation : image.dataset.still;
+    const nextSource = sectionIsColored ? asset.replace('assets/', 'assets/color/') : asset;
     if (image.getAttribute('src') !== nextSource) image.setAttribute('src', nextSource);
     image.dataset.playing = String(playing);
   });
@@ -161,3 +163,34 @@ dialog.addEventListener('close', () => {
 });
 document.getElementById('year').textContent = new Date().getFullYear();
 selectProject(0);
+
+// The section crossing the middle of the viewport owns the site's color.
+const scrollSections = [...document.querySelectorAll('main > section')];
+let sectionFrame = 0;
+let currentSection = null;
+
+function updateCurrentSection() {
+  sectionFrame = 0;
+  const guide = window.innerHeight * 0.5;
+  const visible = scrollSections.find(section => {
+    const bounds = section.getBoundingClientRect();
+    return bounds.top <= guide && bounds.bottom > guide;
+  });
+  const nextSection = visible || scrollSections.reduce((nearest, section) => {
+    const bounds = section.getBoundingClientRect();
+    const distance = Math.min(Math.abs(bounds.top - guide), Math.abs(bounds.bottom - guide));
+    return distance < nearest.distance ? { section, distance } : nearest;
+  }, { section: scrollSections[0], distance: Infinity }).section;
+  if (nextSection === currentSection) return;
+  currentSection?.classList.remove('section-active');
+  nextSection.classList.add('section-active');
+  currentSection = nextSection;
+  updateAnimations();
+}
+
+function scheduleCurrentSection() {
+  if (!sectionFrame) sectionFrame = requestAnimationFrame(updateCurrentSection);
+}
+window.addEventListener('scroll', scheduleCurrentSection, { passive: true });
+window.addEventListener('resize', scheduleCurrentSection);
+scheduleCurrentSection();

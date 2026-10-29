@@ -140,3 +140,61 @@ dialog::backdrop { background: #00000080; }
   .site-footer .handwritten { font-size: 10px; }
   dialog h2 { font-size: 25px; }
 }
+
+/* Only the section under the viewport's midpoint receives color. */
+main > section {
+  transition: none;
+}
+main > section.section-active {
+  transition: background-color .32s ease;
+}
+.hero.section-active {
+  --rust: #a94e3c;
+  background: #faf0eb;
+}
+.hero.section-active .hero-intro { border-color: #deb8ab; }
+.hero.section-active .name-caption { border-color: #d9a596; }
+.projects-section.section-active {
+  --rust: #a94e3c;
+  background: #f9efe9;
+}
+.projects-section.section-active .coach-mule { --coach-color: #e5b2a2; }
+.projects-section.section-active .coach-llm { --coach-color: #c7cfba; }
+.projects-section.section-active .coach-diffusion { --coach-color: #e6cf99; }
+.projects-section.section-active .coach-window img { filter: none; }
+.projects-section.section-active .locomotive svg {
+  filter: sepia(.65) saturate(1.7) hue-rotate(325deg);
+}
+.about-section.section-active {
+  --rust: #55735a;
+  background: #eef3ed;
+}
+.about-section.section-active .notebook { background: #fafbf5; }
+.about-section.section-active .notebook svg {
+  filter: sepia(.25) saturate(1.4) hue-rotate(55deg);
+}
+.experience-section.section-active {
+  --rust: #58705f;
+  background: #e7eee7;
+}
+.experience-section.section-active .timeline-item:first-child::before {
+  background: var(--rust);
+  border-color: var(--rust);
+}
+.toolkit-section.section-active {
+  --rust: #a47a38;
+  background: #f8f1e5;
+}
+.side-tracks.section-active {
+  --rust: #a94e3c;
+  background: #faf0eb;
+}
+.community-note.section-active {
+  --rust: #55735a;
+  background: #e7eee7;
+  border-color: #a5b6a6;
+}
+.contact-section.section-active {
+  --rust: #a94e3c;
+  background: #f1d9cf;
+}
