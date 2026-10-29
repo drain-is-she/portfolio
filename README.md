@@ -1,6 +1,6 @@
 # Priyanshi Goyal · The Project Express
 
-A responsive, doodle-inspired portfolio for AI research, generative models, and computer vision. Built with semantic HTML, CSS, and vanilla JavaScript, hosted on GitHub Pages.
+A responsive, monochrome portfolio with digital typography and an illustrated project train for AI research, generative models, and computer vision. Built with semantic HTML, CSS, and vanilla JavaScript, hosted on GitHub Pages.
 
 ## Run locally
 
@@ -47,4 +47,4 @@ The three animations illustrate concepts; they are not recordings or model-gener
 - [Mitchell Sparrow](https://www.mitchellsparrow.com/): research, experience, and project structure.
 - [Jakub's interface details](https://jakub.kr/writing/details-that-make-interfaces-feel-better): text wrapping, focus on interaction details, interruptible transitions.
 
-All illustrations are original. Fonts are self-hosted DM Sans, Fraunces, and Caveat under the SIL Open Font License; notices are in `assets/fonts/`.
+All illustrations are original. JetBrains Mono is self-hosted under the SIL Open Font License; notices are in `assets/fonts/`.

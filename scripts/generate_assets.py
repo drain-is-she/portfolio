@@ -6,14 +6,14 @@ import random
 
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / 'assets'
-INK = '#30332e'
-PAPER = '#faf7ee'
-RUST = '#a94e3c'
-SAGE = '#b9c7a5'
-PINK = '#e3b4a6'
-GOLD = '#e5cc91'
+INK = '#323232'
+PAPER = '#ffffff'
+RUST = '#606060'
+SAGE = '#c2c2c2'
+PINK = '#bdbdbd'
+GOLD = '#cdcdcd'
 FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf'
-SERIF = '/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf'
+SERIF = FONT
 
 def font(size, serif=False):
     return ImageFont.truetype(SERIF if serif else FONT, size)
@@ -23,7 +23,7 @@ def canvas():
     draw = ImageDraw.Draw(image)
     for x in range(20, 640, 24):
         for y in range(18, 300, 24):
-            draw.ellipse((x, y, x+1, y+1), fill='#e3dfd3')
+            draw.ellipse((x, y, x+1, y+1), fill='#dfdfdf')
     return image, draw
 
 def arrow(draw, start, end, fill=INK):
@@ -39,7 +39,7 @@ def mule(frame):
     nodes = [(90,100),(210,56),(206,174),(335,125),(462,59),(475,192),(568,113),(332,235),(85,227)]
     edges = [(0,1),(0,2),(0,8),(1,2),(1,3),(2,3),(2,7),(3,4),(3,5),(3,7),(4,6),(5,6),(5,7),(7,8)]
     for a, b in edges:
-        draw.line([nodes[a],nodes[b]], fill='#b9bcae', width=2)
+        draw.line([nodes[a],nodes[b]], fill='#bababa', width=2)
     path = [0,2,3,5,6]
     for a,b in zip(path,path[1:]):
         draw.line([nodes[a],nodes[b]], fill=RUST,width=3)
@@ -67,10 +67,10 @@ def mule(frame):
 def llm(frame):
     image,draw=canvas()
     draw.text((25,18),'one thought, one token',font=font(15),fill=INK)
-    draw.rounded_rectangle((34,89,186,210),radius=8,fill='#e8ecdf',outline=INK,width=2)
+    draw.rounded_rectangle((34,89,186,210),radius=8,fill='#eaeaea',outline=INK,width=2)
     draw.text((50,105),'hello,',font=font(23,True),fill=INK)
     draw.text((50,143),'world',font=font(23,True),fill=INK)
-    for i in range(3): draw.line((49,181+i*8,130-i*13,181+i*8),fill='#97a08b',width=2)
+    for i in range(3): draw.line((49,181+i*8,130-i*13,181+i*8),fill='#9d9d9d',width=2)
     arrow(draw,(197,150),(243,150))
     draw.rounded_rectangle((260,99,376,195),radius=15,fill=SAGE,outline=INK,width=3)
     draw.line((318,98,318,76),fill=INK,width=2)
@@ -90,9 +90,9 @@ def llm(frame):
     for i,token in enumerate(tokens):
         y=84+i*53
         visible=i<count
-        draw.rounded_rectangle((454,y,601,y+40),radius=6,fill=GOLD if visible else PAPER,outline=INK if visible else '#c9c8bc',width=2)
+        draw.rounded_rectangle((454,y,601,y+40),radius=6,fill=GOLD if visible else PAPER,outline=INK if visible else '#c7c7c7',width=2)
         if visible: draw.text((473,y+9),token,font=font(20),fill=INK)
-        elif i==count: draw.text((474,y+10),'...',font=font(18),fill='#b0b3a5')
+        elif i==count: draw.text((474,y+10),'...',font=font(18),fill='#b1b1b1')
     draw.text((216,270),'predict → learn → repeat',font=font(14),fill=INK)
     return image
 
@@ -114,12 +114,12 @@ def diffusion(frame):
         draw.rounded_rectangle((x-8,74,x+120,202),radius=9,fill=PAPER,outline=INK,width=2)
         for i,(n,value) in enumerate(zip(noise,target)):
             v=int((n*(1-mix)+value/255*mix)*205)
-            c=(246-v,242-v,229-v)
+            c=(246-v,246-v,246-v)
             px=x+(i%28)*4;py=82+(i//28)*4
             draw.rectangle((px,py,px+3,py+3),fill=c)
         draw.text((x+8,219),['noise','denoise','a digit'][col],font=font(17),fill=INK)
         if col<2: arrow(draw,(x+132,139),(x+178,139))
-    draw.line((162,271,476,271),fill='#c9c8bc',width=3)
+    draw.line((162,271,476,271),fill='#c7c7c7',width=3)
     draw.line((162,271,162+int(314*t),271),fill=RUST,width=3)
     draw.ellipse((157+int(314*t),266,167+int(314*t),276),fill=RUST)
     return image
@@ -132,7 +132,7 @@ for name,draw_frame,poster in [('mule',mule,12),('llm',llm,40),('diffusion',diff
     indexed[0].save(ASSETS/f'{name}.gif',save_all=True,append_images=indexed[1:],duration=85,loop=0,optimize=True,disposal=2)
     print(name,(ASSETS/f'{name}.gif').stat().st_size)
 
-social=Image.new('RGB',(1200,630),'#f5f1e8')
+social=Image.new('RGB',(1200,630),'#f1f1f1')
 d=ImageDraw.Draw(social)
 d.text((67,51),'PRIYANSHI GOYAL',font=font(18),fill=RUST)
 d.text((64,92),'A little curiosity',font=font(65,True),fill=INK)

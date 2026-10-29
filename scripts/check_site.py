@@ -33,7 +33,7 @@ for ref in site.refs:
 for image in site.images:
     assert image.get('alt'), 'Image needs meaningful alt text'
     assert image.get('width') and image.get('height'), 'Image needs dimensions'
-for font in ('dm-sans', 'fraunces', 'caveat'):
+for font in ('jetbrains-mono',):
     assert (ROOT / f'assets/fonts/{font}.woff2').stat().st_size > 1000
 for gif in ('mule', 'llm', 'diffusion'):
     assert (ROOT / f'assets/{gif}.gif').read_bytes()[:6] in (b'GIF87a', b'GIF89a')
