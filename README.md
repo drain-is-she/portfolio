@@ -1,6 +1,6 @@
 # Priyanshi Goyal · The Project Express
 
-A responsive, monochrome portfolio with digital typography and an illustrated project train for AI research, generative models, and computer vision. Built with semantic HTML, CSS, and vanilla JavaScript, hosted on GitHub Pages.
+A responsive portfolio with digital typography, an illustrated project train, technical writing, and a 3D modelling gallery. Built with semantic HTML, CSS, and vanilla JavaScript, hosted on GitHub Pages.
 
 ## Run locally
 
@@ -26,11 +26,19 @@ The build copies only public website files into `dist/`. The GitHub Actions work
 - A pause control and the system's reduced-motion preference are respected.
 - Field notes use a native dialog with Escape dismissal, a close button, and focus restoration.
 
+## Writing and 3D work
+
+- The writing window presents five LeetCode articles as accessible tabs. Arrow keys, Home, and End switch between them; each preview links to the full post.
+- Each ZIP image set appears in one 3D gallery card with previous/next controls. The three local videos play with native controls and sound, and opening one pauses another.
+- The supplied videos were rotated counterclockwise into landscape MP4s so their content reads upright on desktop. Their AAC audio was preserved. Posters are still frames from those same videos.
+- The 3D media is grayscale outside its section and appears in color while that section is current. The original ZIPs and videos remain on the user's desktop; the website serves only the selected images and web-ready copies.
+
 ## Edit content
 
-- `index.html`: introduction, coach summaries, experience, skills, and contact links.
-- `script.js`: project field notes and interaction behavior.
-- `styles.css`: typography, colors, train illustration, responsive styles.
+- `index.html`: introduction, projects, experience, skills, writing, 3D work, and contact links.
+- `script.js`: project notes, tabs, image galleries, and scroll behavior.
+- `styles.css` and `sections.css`: typography, the train, the new sections, and responsive styles.
+- `assets/3d/`: user-supplied image sets and upright, audio-preserving copies of the three videos.
 - The original CV is kept locally in the ignored `.private/` directory and is excluded from the public repository and deployment.
 - `scripts/generate_assets.py`: reproducible, original illustrated project GIFs and posters. Requires Pillow only if regenerating images.
 - `assets/color/`: the original color GIFs and posters from the portfolio's first commit. The generated grayscale counterparts stay in `assets/`; keep both sets together when changing project artwork.
@@ -49,4 +57,4 @@ The three animations illustrate concepts; they are not recordings or model-gener
 - [Mitchell Sparrow](https://www.mitchellsparrow.com/): research, experience, and project structure.
 - [Jakub's interface details](https://jakub.kr/writing/details-that-make-interfaces-feel-better): text wrapping, focus on interaction details, interruptible transitions.
 
-All illustrations are original. JetBrains Mono is self-hosted under the SIL Open Font License; notices are in `assets/fonts/`.
+The train illustrations are original; the 3D media was supplied by Priyanshi. JetBrains Mono is self-hosted under the SIL Open Font License; notices are in `assets/fonts/`.

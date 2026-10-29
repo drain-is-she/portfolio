@@ -164,6 +164,49 @@ dialog.addEventListener('close', () => {
 document.getElementById('year').textContent = new Date().getFullYear();
 selectProject(0);
 
+const blogTabs = [...document.querySelectorAll('.writing-tabs [role="tab"]')];
+const blogPanels = blogTabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
+function selectBlog(index, focus = false) {
+  blogTabs.forEach((tab, tabIndex) => {
+    const selected = tabIndex === index;
+    tab.setAttribute('aria-selected', String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+    blogPanels[tabIndex].hidden = !selected;
+  });
+  if (focus) blogTabs[index].focus();
+}
+blogTabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => selectBlog(index));
+  tab.addEventListener('keydown', event => {
+    const moves = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+    let next = index;
+    if (event.key in moves) next = (index + moves[event.key] + blogTabs.length) % blogTabs.length;
+    else if (event.key === 'Home') next = 0;
+    else if (event.key === 'End') next = blogTabs.length - 1;
+    else return;
+    event.preventDefault();
+    selectBlog(next, true);
+  });
+});
+
+document.querySelectorAll('[data-gallery]').forEach(gallery => {
+  const images = [...gallery.querySelectorAll('.model-stage img')];
+  const count = gallery.querySelector('[data-gallery-count]');
+  let active = 0;
+  function showImage(index) {
+    active = (index + images.length) % images.length;
+    images.forEach((image, imageIndex) => { image.hidden = imageIndex !== active; });
+    count.textContent = `${String(active + 1).padStart(2, '0')} / ${String(images.length).padStart(2, '0')}`;
+  }
+  gallery.querySelector('[data-gallery-prev]').addEventListener('click', () => showImage(active - 1));
+  gallery.querySelector('[data-gallery-next]').addEventListener('click', () => showImage(active + 1));
+});
+
+const modelVideos = [...document.querySelectorAll('.model-video-stage video')];
+modelVideos.forEach(video => video.addEventListener('play', () => {
+  modelVideos.forEach(other => { if (other !== video) other.pause(); });
+}));
+
 // The section crossing the middle of the viewport owns the site's color.
 const scrollSections = [...document.querySelectorAll('main > section')];
 let sectionFrame = 0;
@@ -186,6 +229,7 @@ function updateCurrentSection() {
   nextSection.classList.add('section-active');
   currentSection = nextSection;
   updateAnimations();
+  if (nextSection.id !== 'models') modelVideos.forEach(video => video.pause());
 }
 
 function scheduleCurrentSection() {

@@ -14,7 +14,7 @@ class SiteParser(HTMLParser):
         attrs = dict(attrs)
         if 'id' in attrs:
             self.ids.append(attrs['id'])
-        for key in ('src', 'href', 'data-still', 'data-animation'):
+        for key in ('src', 'href', 'poster', 'data-still', 'data-animation'):
             if key in attrs:
                 self.refs.append(attrs[key])
         if tag == 'img':
