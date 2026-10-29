@@ -1,0 +1,11 @@
+{
+  "name": "priyanshi-goyal-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A doodle-inspired AI portfolio, aboard the Project Express.",
+  "scripts": {
+    "dev": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "build": "node scripts/build.mjs",
+    "check": "node --check script.js && python3 scripts/check_site.py"
+  }
+}
