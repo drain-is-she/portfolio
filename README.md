@@ -30,7 +30,7 @@ The build copies only public website files into `dist/`. The GitHub Actions work
 
 - The writing window presents five LeetCode articles as accessible tabs. Arrow keys, Home, and End switch between them; each preview links to the full post.
 - Each ZIP image set appears in one 3D gallery card with previous/next controls. The three local videos play with native controls and sound, and opening one pauses another.
-- The supplied videos were rotated counterclockwise into landscape MP4s so their content reads upright on desktop. Their AAC audio was preserved. Posters are still frames from those same videos.
+- The supplied videos were rotated for upright display. The headphones clip has an additional 90° counterclockwise rotation and is shown as a portrait video within its gallery window. Their AAC audio was preserved. Posters are still frames from those same videos.
 - The 3D media is grayscale outside its section and appears in color while that section is current. The original ZIPs and videos remain on the user's desktop; the website serves only the selected images and web-ready copies.
 
 ## Edit content
