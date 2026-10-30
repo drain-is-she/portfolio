@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Priyanshi Goyal explains the purpose of an API gateway, from request validation and authentication to routing and circuit breakers.">
+  <title>Purpose of an API Gateway · Priyanshi Goyal</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { background: #f7f7f7; }
+    .article-wrap { width: min(100% - 40px, 780px); margin: 0 auto; padding: 42px 0 90px; }
+    .article-back { display: inline-block; margin-bottom: 38px; color: inherit; font-size: 12px; text-underline-offset: 4px; }
+    .article-head { border-top: 2px solid currentColor; padding-top: 22px; }
+    .article-meta { display: flex; justify-content: space-between; gap: 16px; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+    .article-head h1 { max-width: 700px; margin: 38px 0 16px; font-size: clamp(38px, 7vw, 72px); line-height: 1.05; letter-spacing: -.06em; }
+    .article-subtitle { margin: 0 0 38px; font-size: clamp(17px, 2.5vw, 23px); }
+    .article-body { border: 1px solid currentColor; background: #fff; padding: clamp(24px, 6vw, 58px); }
+    .article-body h2 { margin: 0 0 18px; font-size: 23px; letter-spacing: -.04em; }
+    .article-body h2:not(:first-child) { margin-top: 40px; }
+    .article-body p, .article-body li { font-size: 14px; line-height: 1.9; }
+    .article-body p { margin: 0 0 18px; }
+    .article-body ol { margin: 0 0 18px; padding-left: 23px; }
+    .article-body li + li { margin-top: 8px; }
+    .article-end { margin-top: 24px; border-top: 1px solid currentColor; padding-top: 16px; font-size: 10px; letter-spacing: .08em; }
+    @media (max-width: 560px) { .article-wrap { width: min(100% - 28px, 780px); padding-top: 26px; } .article-meta { flex-direction: column; gap: 6px; } }
+  </style>
+</head>
+<body>
+  <main class="article-wrap">
+    <a class="article-back" href="../index.html#writing">← Back to technical blogs</a>
+    <header class="article-head">
+      <div class="article-meta"><span>TECHNICAL BLOG / SYSTEM DESIGN</span><time datetime="2026-10-30">30 OCT 2026</time></div>
+      <h1>Purpose of an API Gateway</h1>
+      <p class="article-subtitle">What is an API gateway?</p>
+    </header>
+    <article class="article-body">
+      <h2>What is an API gateway?</h2>
+      <p>An API gateway is a single entry point for a client and multiple backend services. First, a client sends an HTTP request to the API gateway. The gateway parses and validates the request. Parsing means breaking the request into structured information.</p>
+      <p>Before the request reaches the gateway, the network stack handles it across layers of the OSI model:</p>
+      <ol>
+        <li>At the application layer, the HTTP or HTTPS request is constructed.</li>
+        <li>At the transport layer, TCP segments the data and manages delivery.</li>
+        <li>At the network layer, IP handles addressing and routing.</li>
+        <li>At the data link layer, frames are created for local network delivery.</li>
+        <li>At the physical layer, bits travel over the transmission medium.</li>
+      </ol>
+      <p>At the other end, this process is handled in reverse order so the application can receive the request.</p>
+      <h2>What happens next?</h2>
+      <p>The API gateway checks an allow list or deny list. It can then talk to an identity provider for authentication and authorization. After that, it applies rate limits and routes the request to the right backend service.</p>
+      <p>The gateway may transform the request into the appropriate protocol before sending it to a backend microservice. It also handles errors and faults. If a backend takes too long to recover, a circuit breaker can stop sending requests to it for a while.</p>
+      <div class="article-end">PRIYANSHI GOYAL · FIELD NOTE 01</div>
+    </article>
+  </main>
+</body>
+</html>

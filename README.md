@@ -28,7 +28,7 @@ The build copies only public website files into `dist/`. The GitHub Actions work
 
 ## Writing and 3D work
 
-- The writing window presents five LeetCode articles as accessible tabs. Arrow keys, Home, and End switch between them; each preview links to the full post.
+- The writing window presents the newest technical post first, followed by five LeetCode articles, as accessible tabs. Arrow keys, Home, and End switch between them; each preview links to the full post.
 - Each ZIP image set appears in one 3D gallery card with previous/next controls. The three local videos play with native controls and sound, and opening one pauses another.
 - The supplied videos were rotated for upright display. The headphones clip is shown as a portrait video within its gallery window, with a further 180° rotation applied to its current orientation. Their AAC audio was preserved. Posters are still frames from those same videos.
 - The 3D media is grayscale outside its section and appears in color while that section is current. The original ZIPs and videos remain on the user's desktop; the website serves only the selected images and web-ready copies.
@@ -36,6 +36,7 @@ The build copies only public website files into `dist/`. The GitHub Actions work
 ## Edit content
 
 - `index.html`: introduction, projects, experience, skills, writing, 3D work, and contact links.
+- `tech blogs/`: full technical posts hosted with the portfolio. Add new posts at the top of the writing tabs in `index.html` so the freshest appears first.
 - `script.js`: project notes, tabs, image galleries, and scroll behavior.
 - `styles.css` and `sections.css`: typography, the train, the new sections, and responsive styles.
 - `assets/3d/`: user-supplied image sets and upright, audio-preserving copies of the three videos.

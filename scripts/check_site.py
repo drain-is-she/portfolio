@@ -2,6 +2,7 @@
 from html.parser import HTMLParser
 from pathlib import Path
 import re
+from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -29,7 +30,7 @@ for ref in site.refs:
     if ref.startswith('#'):
         assert ref[1:] in site.ids, f'Missing anchor {ref}'
     elif not re.match(r'^[a-z]+:', ref):
-        assert (ROOT / ref).is_file(), f'Missing asset: {ref}'
+        assert (ROOT / unquote(ref)).is_file(), f'Missing asset: {ref}'
 for image in site.images:
     assert image.get('alt'), 'Image needs meaningful alt text'
     assert image.get('width') and image.get('height'), 'Image needs dimensions'
